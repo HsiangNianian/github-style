@@ -10,7 +10,7 @@ pygmentsUseClasses = true
   author = "简律纯"
   description = "Arranger, yeah I have an idea, programming with musical language and composing with programming language :s <a href='https://github.com/retrofor'>@retrofor</a>"
   github = "HsiangNianian · he/him"
-  Education = "<a href='https://github.com/AICMUniversity'>@AICMUniversity</a>"
+  Education = "@AICMUniversity"
   email = "i@jyunko.cn"
   url = "https://www.jyunko.cn"
   keywords = "blog, google analytics"

@@ -189,3 +189,9 @@ body {
 .pinned-item-desc img {
   max-width: 100%;
 }
+
+.user-mention, .team-mention {
+  font-weight: var(--base-text-weight-semibold, 600);
+  color: white;
+  white-space: nowrap;
+}
