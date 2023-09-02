@@ -1,66 +1,244 @@
 ---
 title: Midido
-date: 2022-08-05
+date: 2022-10-03 23:07:27
 summary: '简单实现用lua输出midi的库。'
-categories:
- - [技术,Lua]
+language:
+ - [Lua]
 tags:
  - FIXED
  - Dice
+katex: math
 ---
 
-> 使用《署名—非商业性使用—相同方式共享 4.0 协议国际版》（CC BY-NC-SA 4.0）进行授权。
-https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans
+# Midido User wiki
 
+> Midido ♫¶
+> 一个用于读写MIDI文件，且具有十分友好的API的Lua扩库。它提供的MIDI数据是完全抽象的，因此并不需要用户担心那些诸如增量时间(Delta Time)和音符信号(NoteOn/NoteOff)这样的技术问题。它的方法是直观且具体的，同时对象数据也具有良好的可读性。 值得一提的是——这个扩展库不需要 任何 依赖。
+> 编写和翻译它的初衷是为了让大家都能尝试以一种更加方便的方法写出自己的乐谱，人人都是作曲家，都能享受音乐的魅力。
 
-| Midido To-do list      | 描述 | 状态     |
-| :---        |    :----:   |          :---: |
-| wiki      | 用法wiki       | x |
-| Keyboards' pack   | 键位包        | 敬请期待 |
-| songs' e.g. | 歌曲工程示例 | x|
+这里是Midido的API介绍wiki，你可以在这里知晓Midido绝大部分API的用途、原理，以便在编写乐谱脚本时能更快更准确的达到自己想要的效果。废话就不多说了，让我们快点开始吧~
 
-## 一、基本信息
-> - 作者： 简律纯
-- 联系方式：qq:a2c29k9
-- 版本：v1.0
-- 更新日期：暂无
-- 关键词：暂无
-- 许可协议：CC BY-NC-SA 4.0
+需要注意的是，本文主要针对那些有一定 `Lua` 编写基础的脚本作者，同时我也十分希望这些作者在阅读完本教程后能够尝试着写写自己的 `midi` 乐谱，并为乐谱库作出一些贡献。
 
-## 二、详细介绍
-### 1.简介
-> 最初是一个设想，毕竟我是写音乐的，主要负责作曲编曲，鸽了快一年后很多粉丝不耐烦了，于是我开始整一些或许大学用得上的东西^比如一个bot ，高考那几天突发奇想，我或许可以教粉丝朋友一起写音乐？那就先从midi序列开始吧！~~（也可以名正言顺咕咕咕，同时压榨劳动力）~~
+## 1. 开始，安装和调用
 
-### 2.一些教训
-> 1.之前试过onebot ZBP插件里的timidity，也是手搓midi，但是仍然需要安装ffmpeg和timidity环境，且受到一定的系统环境影响——尽管成功写出了midi文件，但是对于其他那些使用非Windows系统（大家其实更愿意用Macbook）的人（主要是我的作曲家编曲家朋友）来说安装十分困难。
-zbp关于midi的插件介绍：
-![](https://dice-forum.s3.ap-northeast-1.amazonaws.com/2022-07-30/1659158099-11773-5d706d6c091bc400.jpg)
+{% btn https://github.com/A2C29K9/A2C29K9.github.io/releases/download/Midido-code/Midido-v1.0.0.zip, 点击下载Midido-v1.0.0, download fa-lg fa-fw %}
 
+那么在使用前，你需要将脚本全部解压至 `DiceQQ\plugin\` 目录下，或者 `Diceki\lua\` 也可以，但这边特别推荐放在 `DiceQQ\plugin\` 目录下，因为这涉及到生成文件的路径问题，同时本教程的示例代码也是根据 `DiceQQ\plugin\` 目录来编写的。
 
-> 2.于是我开始注意到简化使用指令的重要性，并在此机缘巧合下找到了 [AutoPiano](https://www.autopiano.cn)。
-我并不在意它的关于编写输出音乐的任何逻辑或是别的什么，我找到了站长，并向他提出了几个问题——就比如，键盘谱是如何想出来的。
-下图为孤勇者唱谱：
-![](https://dice-forum.s3.ap-northeast-1.amazonaws.com/2022-07-30/1659157938-716855-img20220730131141.jpg)
+调用：
 
+```lua
+local Midido = require ('Midido')
+```
 
-> 3.综上，这未尝不是一个很好的开端，至少我明白了手搓midi的原理，以及一些更切合实际的东西，就比如简化指令。
+## 2. 编写一个简单的(单音轨)脚本
 
-## 三、TO-DO LIST
-- [ ] 编写用法wiki
-用法非常复杂，这脚本就算是raw了，我需要讲清楚如何写出一段音阶（最简单的一段中音区 C D E F G A B midi片段）；如何写出一段chord（和弦），并在此和弦基础上继续写主旋律；如何变换调式调性（F# -> Ab）；如何修改速度等等。
+那么现在来编写一个简单的生成midi的脚本吧~
+新建 `test1.lua`文件，将下面的代码复制粘贴进去，保存，随后使用 `.system load`命令重载。
+在重载时 `test1.lua`会被执行，将在 `DiceQQ\plugin\Midido\project\` 文件夹生成 `test1.mid` 文件。
 
-- [ ] 编写最基础的简化指令包，虽然目前写好的raw版本是功能最全的，但是其编写midi的方式（我目前主要靠写lua脚本再 `loadLua()` 或者使用basicFunction1.0（啊现在应该叫FuncLib2.0）内注释掉的 `load()()` 来写midi）过于硬核，所以需要一个诸如 `midi:0333-1 0333-2` 或是 `midi:E5 E5 E5 C5` 这样的简单易用指令。
+```lua
+local Midido = require ('Midido')
+local Track = Midido.Track
+local NoteEvent = Midido.NoteEvent
+local Writer = Midido.Writer
 
-- [x] 一个音源键位包，或者一个键位函数包，用于简化脚本写midi时的打谱环节。
+-- 创建通道音轨(Track)实例
+local track = Track.new()
 
-## 四、脚本输出实例试听
-C大调音阶：
-[upl-file uuid=e45d0254-ca7a-498c-b00d-069b2de5a74b size=257B]c-major-scale.zip[/upl-file]
-Am和弦：
-[upl-file uuid=d2589143-51ab-4ff7-aa9f-96734e60d4b3 size=321B]chord-example.zip[/upl-file]
-时值变化：
-[upl-file uuid=d9db9d92-396a-48c2-918c-2ecf3ef37e26 size=260B]duration-example.zip[/upl-file]
+-- 将音符存为notes表中的键值(必须是指定的八度音阶音符)
+local notes = {'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'}
 
-## 五、最后
-> 脚本将会在简化指令版写完发布，愿大家都能名正言顺的咕咕咕，也愿大家都热爱生活，热爱音乐！
+-- 将音符添加到音轨
+track:add_events(NoteEvent.new({pitch = notes, sequential = true}))
 
+-- 遍历音轨
+local writer = Writer.new(track)
+
+-- 在`Midido\project\`内生成一个名为《test1》的 MIDI 文件
+writer:save_MIDI('test1',getDiceDir().."\\plugin\\Midido\\project")
+```
+
+> ~~由于代码中已经有一些注释，因此不需要对其再进行解释说明。 这是 MIDI 文件构建的基本步骤。~~
+
+## 3. 剖析、分解示例脚本
+
+通过运行上述脚本，我们已经知晓了MIDI 文件构建的最基本步骤：
+
+    1. 创建通道音轨.
+    2. 设置音轨音符.
+    3. 写入通道音轨.
+    4. 写文件并导出.
+
+```mermaid
+graph TB
+    id1["require ('Midido')"]==> |创建| id2["通道音轨(Track)"]
+    id2==> |直接添加音符| id3("Track:add_event方法<br>与NoteEvent.new函数")
+    id2==> |存入notes表| id4{"notes = {...}"}
+    id4==> |添加表| id3
+    id3==> |遍历音轨| id5["Writer.new(track)"]
+    id5==> |写文MIDI文件| id6("writer:save_MIDI(name,path)")
+```
+
+为了方便理解，我们对 `test1.lua`内的API逐行说明：
+
+### 3.1 调用主库
+
+> `local Midido = require ('Midido')`
+
+> Midido.lua
+> 通过这个主库可以调用其它所有的库。写一个MIDI序列,无非是读取并写入的问题，因此将其它支持库均整合起来,它仅提供两个非常有用的函数:
+>
+> 1. `Midido.get_MIDI_tracks(path)`
+>
+>    > 读取MIDI序列的所有轨道,
+>    > 并将它们转换为Midido的轨道实例.
+>    > @string path:MIDI文件的路径.
+>    > @return->由轨道组成的数组.
+>    >
+> 2. `Midido.add_tracks_to_MIDI(input, tracks, output)`
+>
+>    > 向MIDI序列写入轨道.
+>    > @string input:原MIDI文件的路径.
+>    > @param tracks:一个轨道实例或由轨道组成的表.
+>    > @string[opt=`input`]:输出写好后的MIDI序列.
+>    > @return:返回布尔值
+>    >
+
+### 3.2 主库调用的内容
+
+> `local Track = Midido.Track`
+> `local NoteEvent = Midido.NoteEvent`
+> `local Writer = Midido.Writer`
+
+> `Midido.lua` 调用了所有库，因此在 `require('Midido')` 以后可以直接赋值使用。
+>
+> ```lua
+> Midido.Util = require 'Midido.Util'
+> Midido.Chunk = require 'Midido.Chunk'
+> Midido.Track = require 'Midido.Track'
+> Midido.Writer = require 'Midido.Writer'
+> Midido.Constants = require 'Midido.Constants'
+> Midido.MetaEvent = require 'Midido.MetaEvent'
+> Midido.NoteEvent = require 'Midido.NoteEvent'
+> Midido.NoteOnEvent = require 'Midido.NoteOnEvent'
+> Midido.NoteOffEvent = require 'Midido.NoteOffEvent'
+> Midido.ArbitraryEvent = require 'Midido.ArbitraryEvent'
+> Midido.ProgramChangeEvent = require 'Midido.ProgramChangeEvent'
+> ```
+
+### 3.3 创建通道音轨(Track)
+
+> `local track = Track.new()`
+
+> `Track.new(name)` 是 `Track.lua` 内的第一个函数，其作用是创建一条通道音轨，`@string [opt=name]`是可选参数，用于自定义音轨名称。
+
+> 通常来说，如果没有什么特殊需求（比如设置调号拍号等），只需要使用 `Track.new()` 以及 `Track:add_events()`（此方法会在下文说明） 即可。
+> 如果想知道更多内容，你可以查看 `Midido\Track.lua` ，里面有对各个函数的详细介绍。
+
+### 3.4 添加音符到音轨
+
+> `local notes = {'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4'}`
+
+> 将这些音的指定音名存入一个表。
+
+> #### Q1: 可以填入那些音名？
+>
+> #### A1: 在 `Constans.lua` 第36-49行定义了可以使用的音名写法:
+
+> ```lua
+> local table_notes = {
+>    {'C','B#'},
+>    {'C#','Db'},
+>    {'D'},
+>    {'D#','Eb'},
+>    {'E','Fb'},
+>    {'F','E#'},
+>    {'F#','Gb'},
+>    {'G'},
+>    {'G#','Ab'},
+>    {'A'},
+>    {'A#','Bb'},
+>    {'B','Cb'},
+> }
+> ```
+
+> #### Q2: 为什么存入表内？
+>
+> #### A2: 目的当然是为了方便以及偷懒，但从lua编写角度来说，这主要是因为 `NoteEvent.new()` 可以将表作为第一个参数使用。下面我将会介绍 `NoteEvent.new()`。
+
+> `NoteEvent.new(fields)`
+
+> 这是 `NoteEvent.lua` 内的第一个函数。参数 `fields` 是一个包含7个可选参数（比如pitch、sequential）和1个默认参数(`type='note'`)的表。`pitch` 即音高,放在 `Track` 内即编曲家都会描述的通道音高，它可以是一个表。`sequential`(数据信号流/时序) 是一个布尔值，为 `true` 时代表让 MIDI 数据按照每个 MIDI 设备插入音轨的顺序流经它们。
+> `NoteEvent.lua` 用于并向处理 MIDI 的 NoteOn 和 NoteOff 事件，对音符的操作十分全面，如果你对此感兴趣也可以去看看源码，里面同样有十分详细的介绍、
+
+> `track:add_events(NoteEvent.new({pitch = notes, sequential = true}))`
+
+> 这是 `Track:add_events()` 方法，可以将事件列表（或单个事件）添加到通道音轨. 这些事件可以是 `MetaEvents`、`NoteEvents` 或 `ProgramChangeEvents`。
+
+### 3.5 使用编辑器(Writer)遍历音轨
+
+> `Writer.new(tracks)`
+
+> 这是 `Writer.lua` 内的第一个函数，用于向 MIDI 文件写入通道音轨，`tracks`参数可以说单个通道音轨对象或包含多个通道音轨的表.
+
+### 3.6 使用编辑器(Writer)生成文件
+
+> `Writer:save_MIDI(title, directory)`
+
+> 这是 `Writer.lua` 内的最后一个方法，用于写 MIDI 文件，其中 `title` 是文件的名字，`directory` 是可选参数，表述保存的路径。
+
+好了，看到这里本教程的第一部分算是结束了，快写出你的第一个 MIDI 文件吧~
+
+## 4. 附录
+
+> 一些可能有用的信息
+
+### 4.1 文件结构
+
+```tree
+DiceQQ
+└───plugin
+       │  │Midido.lua
+       │
+       └───Midido
+              │   │Writer.lua
+              │   │Util.lua
+              │   │utf8.lua
+              │   │Track.lua
+              │   │ProgramChangeEvent.lua
+              │   │NoteOnEvent.lua
+              │   │NoteOffEvent.lua
+              │   │NoteEvent.lua
+              │   │MetaEvent.lua
+              │   │Constants.lua
+              │   │Chunk.lua
+              │   │ArbitraryEvent.lua
+              │
+              └───bit
+              │     │numberlua.lua
+              │     │native_bitwise.lua
+              │
+              └───project
+```
+
+### 4.2 参考
+
+- http://midi.teragonaudio.com/tech/midispec.htm
+- http://digitalsoundandmusic.com/6-3-1-midi-smf-files
+- http://midi.teragonaudio.com/tech/midispec/noteoff.htm
+- http://midi.teragonaudio.com/tech/midispec/noteon.htm
+- https://www.recordingblogs.com/wiki/midi-note-off-message
+- https://www.rubydoc.info/gems/midilib/MIDI
+- https://www.recordingblogs.com/wiki/midi-cue-point-meta-message
+- https://www.sweetwater.com/insync/midi-mode/
+- https://baike.baidu.com/item/MIDI/217824#3
+- https://www.jianshu.com/p/6c495b51a40c
+- https://www.midi.org/midi-articles/about-midi-part-3-midi-messages
+
+> to be...
+
+---
+
+Lastest Edit:2022/10/04 12:11 by 简律纯
