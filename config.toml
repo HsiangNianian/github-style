@@ -21,7 +21,7 @@ pygmentsUseClasses = true
   favicon = "/images/github.png"
   location = "China"
   userStatusEmoji = "🙃"
-  enableGitalk = true
+  enableGitalk = false
     
   [params.gitalk]
     clientID = "1b969db3bd6439c3a48e" # Your client ID
