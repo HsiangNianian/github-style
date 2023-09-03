@@ -272,11 +272,3 @@ body {
   height: 30px;
   overflow: hidden;
 }
-
-.flex-items-center {
-  align-items: center !important;
-}
-
-.flex-wrap {
-  flex-wrap: wrap !important;
-}
