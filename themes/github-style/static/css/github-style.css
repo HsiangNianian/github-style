@@ -213,7 +213,7 @@ body {
 
 .developer {
   font-weight: var(--base-text-weight-semibold);
-  color: white;
+  color: var(--base-text-weight-medium);
   white-space: nowrap;
 }
 
