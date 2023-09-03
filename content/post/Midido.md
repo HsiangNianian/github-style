@@ -8,6 +8,7 @@ tags:
  - FIXED
  - Dice
 katex: math
+pin: true
 ---
 
 # Midido User wiki
