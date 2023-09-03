@@ -195,3 +195,20 @@ body {
   color: white;
   white-space: nowrap;
 }
+
+.Link--primary {
+  color: var(--fgColor-default, var(--color-fg-default)) !important;
+}
+
+.octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.developer {
+  font-weight: var(--base-text-weight-semibold);
+  color: white;
+  white-space: nowrap;
+}

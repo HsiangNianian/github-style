@@ -20,6 +20,9 @@ pygmentsUseClasses = true
   location = "China"
   userStatusEmoji = "🙃"
   enableGitalk = false
+  
+  [params.Highlights]
+  dev = true
     
   [params.gitalk]
     clientID = "1b969db3bd6439c3a48e" # Your client ID
