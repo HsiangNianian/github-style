@@ -47,4 +47,5 @@ def decode(code):
 * Gödel, Kurt, "über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I", Monatsheft für Math. und Physik '''38''', 1931, S.173-198.
 
 * Gödel, Escher, Bach|Gödel, Escher, Bach: an Eternal Golden Braid, by Douglas Hofstadter.  This book defines and uses an alternative Gödel numbering.
-*''Gödel's Proof'' by Ernest Nagel and James R. Newman.  This book provides a good introduction and summary of the proof, with a large section dedicated to Gödel's numbering.
+
+* Gödel's Proof by Ernest Nagel and James R. Newman.  This book provides a good introduction and summary of the proof, with a large section dedicated to Gödel's numbering.
