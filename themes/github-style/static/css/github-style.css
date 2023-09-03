@@ -196,7 +196,7 @@ body {
 .user-mention,
 .team-mention {
   font-weight: var(--base-text-weight-semibold, 600);
-  color: white;
+  color: var(--base-text-weight-medium);
   white-space: nowrap;
 }
 
