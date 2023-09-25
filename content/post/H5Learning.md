@@ -52,6 +52,12 @@ HTML5 中的一些有趣的新特性：
  - 新的特殊内容元素，比如 article、footer、header、nav、section
  - 新的表单控件，比如 calendar、date、time、email、url、search
 
+![Alt text](Day-01-1.png)
+
+完整的 HTML 页面应该是包含一个`声明`, `头部元素`, `可见的页面内容` 三部分组成。
+
+> 啊, `<!DOCTYPE html>` 原来是向浏览器声明要使用哪种 HTML 或 XHTML 规范的意思。
+
 ## 附录
 
 ### 最小的HTML文档
