@@ -52,7 +52,7 @@ HTML5 中的一些有趣的新特性：
  - 新的特殊内容元素，比如 article、footer、header、nav、section
  - 新的表单控件，比如 calendar、date、time、email、url、search
 
-![web 页面结构](Day0101.png)
+![web 页面结构](images/Day0101.png)
 
 完整的 HTML 页面应该是包含一个`声明`, `头部元素`, `可见的页面内容` 三部分组成。
 
