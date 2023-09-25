@@ -36,10 +36,10 @@ HTML5 中的一些有趣的新特性：
  - 新的特殊内容元素，比如 article、footer、header、nav、section
  - 新的表单控件，比如 calendar、date、time、email、url、search
 
- ## 最小的HTML文档
+## 最小的HTML文档
 
- ```html
- <!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
