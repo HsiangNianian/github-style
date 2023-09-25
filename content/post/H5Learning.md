@@ -64,7 +64,7 @@ HTML5 中的一些有趣的新特性：
 
 ## 附录
 
-[**最小的HTML文档**](https://www.jyunko.cn/resources/assets/H5Learning/Day01/01.html)
+[**最小的HTML文档**](https://www.jyunko.cn/assets/H5Learning/Day01/01.html)
 
 ```html
 <!DOCTYPE html>
