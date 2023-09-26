@@ -8,6 +8,7 @@ tags:
 katex: math
 mathJax: true
 ---
+
 # 为何开始学习前端?
 
 我一直在注意着 go-cqhttp 与 Mirai 这两个"无头 QQ 客户端"的发展, 同时也时刻留意着 QQ 官方的更新动态, 半年前我得知除了 Watch 手表协议外的协议 bot 基本都下线了, 而这样做的目的我想可能是 Tencent 官方想要把大家驱赶到 Watch 手表协议后再一网打尽吧。
