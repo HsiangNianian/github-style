@@ -8,7 +8,6 @@ tags:
 katex: math
 mathJax: true
 ---
-
 # 为何开始学习前端?
 
 我一直在注意着 go-cqhttp 与 Mirai 这两个"无头 QQ 客户端"的发展, 同时也时刻留意着 QQ 官方的更新动态, 半年前我得知除了 Watch 手表协议外的协议 bot 基本都下线了, 而这样做的目的我想可能是 Tencent 官方想要把大家驱赶到 Watch 手表协议后再一网打尽吧。
@@ -33,28 +32,28 @@ mathJax: true
 
 因此接下来的学习中我也会特别小心以上两点, 这里就先从平易近人的菜鸟教程入手吧。希望我确实能学到点什么。
 
-***
+---
 
 # Day 1
 
 ## H5 的基本介绍
 
 > HTML5 是如何起步的？
-HTML5 是 W3C 与 WHATWG 合作的结果,WHATWG 指 Web Hypertext Application Technology Working Group。
+> HTML5 是 W3C 与 WHATWG 合作的结果,WHATWG 指 Web Hypertext Application Technology Working Group。
 
 WHATWG 致力于 web 表单和应用程序，而 W3C 专注于 XHTML 2.0。在 2006 年，双方决定进行合作，来创建一个新版本的 HTML。
 
 HTML5 中的一些有趣的新特性：
 
- - 用于绘画的 canvas 元素
- - 用于媒介回放的 video 和 audio 元素
- - 对本地离线存储的更好的支持
- - 新的特殊内容元素，比如 article、footer、header、nav、section
- - 新的表单控件，比如 calendar、date、time、email、url、search
+- 用于绘画的 canvas 元素
+- 用于媒介回放的 video 和 audio 元素
+- 对本地离线存储的更好的支持
+- 新的特殊内容元素，比如 article、footer、header、nav、section
+- 新的表单控件，比如 calendar、date、time、email、url、search
 
 ![web 页面结构](https://www.jyunko.cn/images/Day0101.png)
 
-完整的 HTML 页面应该是包含一个`声明`, `头部元素`, `可见的页面内容` 三部分组成。
+完整的 HTML 页面应该是包含一个 `声明`, `头部元素`, `可见的页面内容` 三部分组成。
 
 > 啊, `<!DOCTYPE html>` 原来是向浏览器声明要使用哪种 HTML 或 XHTML 规范的意思。大小写不区分, 所以我打算全部大写。
 
@@ -80,3 +79,59 @@ HTML5 中的一些有趣的新特性：
  
 </html>
 ```
+
+---
+
+# Day 2
+
+## 基本属性
+
+`class` 是可以多个的, 但是 `id` 只能有一个，这点有点类似 `Python`。
+
+| 属性  | 描述                                                          |
+| ----- | ------------------------------------------------------------- |
+| class | 为html元素定义一个或多个类名（classname）(类名从样式文件引入) |
+| id    | 定义元素的唯一id                                              |
+| style | 规定元素的行内样式（inline style）                            |
+| title | 描述了元素的额外信息 (作为工具条使用)                         |
+
+
+`<hr>` 可以用于创建水平线。
+`<h1>-<h6>` 标题有六级。
+`<br>` 用于折行。
+`<p>` 段落的行数依赖于浏览器窗口的大小。如果调节浏览器窗口的大小，将改变段落中的行数。
+`<b>` 是加粗。
+`<big>` 放大。
+`<i>` 斜体。
+`<small>` 缩小。
+`<sub>` 下标。
+`<sup>` 上标。
+
+## 附录
+
+[**标题与字体测试**](https://www.jyunko.cn/assets/H5Learning/Day02/01.html)
+[**字符串格式化**](https://www.jyunko.cn/assets/H5Learning/Day02/02.html)
+
+### H5 全局属性
+
+> HTML 全局属性
+> `New` : HTML5 新属性。
+
+| 属性                 | 描述                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| accesskey            | 设置访问元素的键盘快捷键。                                 |
+| class                | 规定元素的类名（classname）                                |
+| contenteditable`New` | 规定是否可编辑元素的内容。                                 |
+| contextmenu`New`     | 指定一个元素的上下文菜单。当用户右击该元素，出现上下文菜单 |
+| data`New`            | 用于存储页面的自定义数据                                   |
+| dir                  | 设置元素中内容的文本方向。                                 |
+| draggable`New`       | 指定某个元素是否可以拖动                                   |
+| dropzone`New`        | 指定是否将数据复制，移动，或链接，或删除                   |
+| hidden`New`          | hidden 属性规定对元素进行隐藏。                            |
+| id                   | 规定元素的唯一 id                                          |
+| lang                 | 设置元素中内容的语言代码。                                 |
+| spellcheck`New`      | 检测元素是否拼写错误                                       |
+| style                | 规定元素的行内样式（inline style）                         |
+| tabindex             | 设置元素的 Tab 键控制次序。                                |
+| title                | 规定元素的额外信息（可在工具提示中显示）                   |
+| translate`New`       | 指定是否一个元素的值在页面载入时是否需要翻译               |
