@@ -41,7 +41,7 @@ Copyright = "© 2023 <a href='https://academic.jyunko.cn'>ACA H.N.</a>"
   [[params.links]]
     title = "AICMU"
     href = "https://github.com/AICMUniversity"
-    icon = "https://ghproxy.com/github.com/AICMUniversity/.github/blob/main/profile/logo.svg"
+    icon = "https://mirror.ghproxy.com/github.com/AICMUniversity/.github/blob/main/profile/logo.svg"
   [[params.links]]
     title = "ACA Jyunko"
     href = "https://academic.jyunko.cn"
