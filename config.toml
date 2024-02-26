@@ -2,10 +2,10 @@ baseURL = "https://www.jyunko.cn/"
 languageCode = "zh-cn"
 title = "HsiangNianian (简律纯)"
 theme = "github-style"
-googleAnalytics = "UA-123456-789"
+googleAnalytics = ""
 pygmentsCodeFences = true
 pygmentsUseClasses = true
-Copyright = "© 2023 <a href='https://academic.jyunko.cn'>ACA H.N.</a>"
+Copyright = "© 2023-PRESENT <a href='https://academic.jyunko.cn'>ACA H.N.</a>"
 
 [params]
   author = "简律纯"
@@ -15,12 +15,12 @@ Copyright = "© 2023 <a href='https://academic.jyunko.cn'>ACA H.N.</a>"
   email = "i@jyunko.cn"
   url = "https://www.jyunko.cn"
   keywords = "blog, google analytics"
-  rss = false
+  rss = true
   lastmod = true
   favicon = "/images/github.png"
-  location = "China"
+  location = "China; US"
   userStatusEmoji = "🙃"
-  enableGitalk = false
+  enableGitalk = true
   
   [params.Highlights]
   dev = true
@@ -49,11 +49,11 @@ Copyright = "© 2023 <a href='https://academic.jyunko.cn'>ACA H.N.</a>"
   [[params.links]]
     title = "Retrofor"
     href = "https://github.com/retrofor"
-    icon = "https://iamai.retrofor.space/retro.png"
+    icon = "https://cdn.jsdelivr.net/gh/retrofor/iamai@master/docs/_static/retro.png"
   [[params.links]]
     title = "水系"
     href = "https://github.com/HydroRoll-Team"
-    icon = "https://mirror.ghproxy.com/https://raw.githubusercontent.com/HydroRoll-Team/HydroRoll/main/site/src/assets/image/logo.png"
+    icon = "https://cdn.jsdelivr.net/gh/HydroRoll-Team/HydroRoll@main/site/src/assets/image/logo.png"
 
 [frontmatter]
   lastmod = ["lastmod", ":fileModTime", ":default"]
